@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="aplicacion_bd2PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>aplicacion_bd2.core.Mensajes</class>
+    <class>aplicacion_bd2.core.Profesores</class>
+    <class>aplicacion_bd2.core.Alumnos</class>
+    <class>aplicacion_bd2.core.Pagos</class>
+    <class>aplicacion_bd2.core.Prorrogas</class>
+    <class>aplicacion_bd2.core.Documentos</class>
+    <class>aplicacion_bd2.core.CriteriosDeEvaluacion</class>
+    <class>aplicacion_bd2.core.Parciales</class>
+    <class>aplicacion_bd2.core.Abonos</class>
+    <class>aplicacion_bd2.core.Roles</class>
+    <class>aplicacion_bd2.core.Eventos</class>
+    <class>aplicacion_bd2.core.Sesiones</class>
+    <class>aplicacion_bd2.core.Clases</class>
+    <class>aplicacion_bd2.core.Categorias</class>
+    <class>aplicacion_bd2.core.Descuentos</class>
+    <class>aplicacion_bd2.core.ApiPackages</class>
+    <class>aplicacion_bd2.core.Configuraciones</class>
+    <class>aplicacion_bd2.core.Users</class>
+    <class>aplicacion_bd2.core.Criterios</class>
+    <class>aplicacion_bd2.core.Materias</class>
+    <class>aplicacion_bd2.core.Responsables</class>
+    <class>aplicacion_bd2.core.Asistencias</class>
+    <class>aplicacion_bd2.core.Secciones</class>
+    <class>aplicacion_bd2.core.Calificaciones</class>
+    <class>aplicacion_bd2.core.ApiClasses</class>
+    <class>aplicacion_bd2.core.Adeudos</class>
+    <class>aplicacion_bd2.core.Asignaturas</class>
+    <class>aplicacion_bd2.core.DocumentosEntregados</class>
+    <class>aplicacion_bd2.core.Administrativos</class>
+    <class>aplicacion_bd2.core.Cuentas</class>
+    <class>aplicacion_bd2.core.Grupos</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
+      <property name="javax.persistence.jdbc.user" value="app"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.password" value="app"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="aplicacion_bd2PU2" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/e-scolar?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>
