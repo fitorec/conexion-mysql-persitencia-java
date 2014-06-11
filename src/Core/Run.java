@@ -28,8 +28,7 @@ public class Run {
         alumno.nombre("Pancho Lopez");
         alumno.email("pancho.lopez@gmail.com");
         if( AlumnoModel.nuevo(alumno) ) {
-            System.out.println("Se guardo exitosament el Alumno");
-            
+            System.out.println("Se guardo exitosamente el Alumno");
         } else {
             System.out.println("Error! " + alumno);
         }
