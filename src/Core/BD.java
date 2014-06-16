@@ -101,7 +101,10 @@ public class BD {
      * Pendiente: Faltaria revisar si la consulta es del tipo:
      * 
      *    select * (que devuelve algo), o del tipo
+     *      -> En este caso: Statement.executeQuery(sql);
+     * 
      *    insert, update (que ejecuta una acción).
+     *       -> En este caso: Statement.executeUpdate()
      * 
      * @param strQuery
      * @return ResultSet result, el resultado de la consulta realizada.
