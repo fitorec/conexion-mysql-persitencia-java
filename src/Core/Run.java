@@ -25,8 +25,12 @@ public class Run {
         CalificacionModel calificacion = new CalificacionModel();
         System.out.println("Clase Calificacion " + calificacion);
         System.out.println("Clase Alumno " + alumno);
-        alumno.nombre("Pancho Lopez");
-        alumno.email("pancho.lopez@gmail.com");
+        //String sql = "INSERT INTO `clase_bd_2`.`alumnos` (`id`, `nombre`, `email`) VALUES (NULL, 'nombre 2', 'email2@gmail.com');";
+        String sql = "SELECT * FROM alumnos;";
+        System.out.println(BD.consulta(sql));
+        
+        alumno.nombre("fitorec");
+        alumno.email("chanerec@gmail.com");
         if( AlumnoModel.nuevo(alumno) ) {
             System.out.println("Se guardo exitosamente el Alumno");
         } else {

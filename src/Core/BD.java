@@ -93,16 +93,32 @@ public class BD {
         }
         return BD.conexion;
     }
-    
+
+    /**
+     * Ejecuta una consulta y devuelve el resultado
+     * 
+     * 
+     * Pendiente: Faltaria revisar si la consulta es del tipo:
+     * 
+     *    select * (que devuelve algo), o del tipo
+     *    insert, update (que ejecuta una acción).
+     * 
+     * @param strQuery
+     * @return ResultSet result, el resultado de la consulta realizada.
+     */
     public static ResultSet consulta(String strQuery) {
         Connection c = BD.conexion();
         ResultSet result = null;
+        if(strQuery == null) {
+            return null;
+        }
+        String sql = strQuery.trim();
         if(c != null) {
             try {
-                Statement stmt = c.createStatement();
-                result = stmt.executeQuery( strQuery );
-            } catch (SQLException e ) {
-                System.out.println("Error en procesar la consulta "+ strQuery);
+               result = BD.conexion().createStatement().executeQuery(sql);
+            } catch (Exception e ) {
+                System.out.println("Error en procesar la consulta "+ sql);
+                e.printStackTrace();
             }
         }
         return result;
