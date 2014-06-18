@@ -82,11 +82,11 @@ public class AlumnoModel extends Model {
         return result;
     }
     
-        /**
+    /**
      * Nuevo.
      *
-     * @param alumno the alumno
-     * @return the boolean
+     * @param alumno El alumno en cuestión
+     * @return boolean, true en caso que se pudo guardar con exito
      */
     public static Boolean nuevo(AlumnoModel alumno) {
         Boolean result = false;

@@ -24,6 +24,12 @@ public class BD {
     private static Connection conexion = null;
     private static String url;
 
+    /**
+     * Devuelve la variable de configuracion con el nombre campo 
+     * 
+     * @param campo
+     * @return El valor del campo en caso de ser null devuelve un valor por defecto
+     */
     public static String config(String campo) {
         if (campo.equalsIgnoreCase("login")) {
             if(BD.login == null) {
@@ -52,25 +58,32 @@ public class BD {
         return campo;
     }
  
-    public static String config(String field, String valor) {
-        if (field.equals("login") && BD.login == null) {
+    /**
+     * Setea una variable de configuracion
+     * 
+     * @param campo el campo de configuracion
+     * @param valor el valor a setearle
+     * @return el valor final de campo
+     */
+    public static String config(String campo, String valor) {
+        if (campo.equals("login") && BD.login == null) {
             BD.login = valor;
             return valor;
         }
-        if (field.equals("password") && BD.password == null) {
+        if (campo.equals("password") && BD.password == null) {
             BD.password = valor;
             return BD.password;
         }
-        if (field.equalsIgnoreCase("baseBD") && BD.baseNombre == null) {
+        if (campo.equalsIgnoreCase("baseBD") && BD.baseNombre == null) {
             BD.baseNombre = valor;
             return BD.baseNombre;
         }
-        if (field.equalsIgnoreCase("host") && BD.host == null) {
+        if (campo.equalsIgnoreCase("host") && BD.host == null) {
             BD.host = valor;
             return BD.host;
         }
-        System.out.println("Campo incorrecto de configuración : " + field);
-        return field;
+        System.out.println("Campo incorrecto de configuración : " + campo);
+        return campo;
     }
 
     /**
@@ -97,15 +110,6 @@ public class BD {
     /**
      * Ejecuta una consulta y devuelve el resultado
      * 
-     * 
-     * Pendiente: Faltaria revisar si la consulta es del tipo:
-     * 
-     *    select * (que devuelve algo), o del tipo
-     *      -> En este caso: Statement.executeQuery(sql);
-     * 
-     *    insert, update (que ejecuta una acción).
-     *       -> En este caso: Statement.executeUpdate()
-     * 
      * @param strQuery
      * @return ResultSet result, el resultado de la consulta realizada.
      */
@@ -118,7 +122,12 @@ public class BD {
         String sql = strQuery.trim();
         if(c != null) {
             try {
-               result = BD.conexion().createStatement().executeQuery(sql);
+                Statement st = BD.conexion.createStatement();
+                if (BD.laConsultaTieneResultados(sql)) {
+                    result = st.executeQuery(sql);
+                } else {
+                    st.execute(sql);
+                }
             } catch (Exception e ) {
                 System.out.println("Error en procesar la consulta "+ sql);
                 e.printStackTrace();
@@ -126,7 +135,25 @@ public class BD {
         }
         return result;
     }
-    
+ 
+    /**
+     * Devuelve true si el tipo de consulta SQL debe de devolver algo.
+     * 
+     * @param strQuery
+     * @return 
+     */
+    private static boolean laConsultaTieneResultados(String strQuery) {
+        String querysTypeUpdate[] = {"UPDATE", "INSERT"};
+        String sqlUpper = strQuery.toUpperCase();
+        for (int i = 0; i < querysTypeUpdate.length; i++) {
+            String currentSqlType = querysTypeUpdate[i];
+            if(sqlUpper.indexOf(currentSqlType) == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+ 
     public static void finalizar() {
     	if(BD.conexion != null ) {
 	        try {
@@ -158,6 +185,12 @@ public class BD {
         }
         return out;
     }
+
+    /**
+     * devuelve  la configuacion actual, asi como el edo de la conexión.
+     * 
+     * @return la descripción del Objeto BD
+     */
     public String toString() {
         return BD.status();
     }
